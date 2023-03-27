@@ -18,18 +18,18 @@
     <ClCompile Include="AlgorithmsProject1.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DirectedGraph.cpp">
+    <ClCompile Include="Graph.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="UndirectedGraph.cpp">
+    <ClCompile Include="GraphNode.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="DirectedGraph.h">
+    <ClInclude Include="Graph.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="UndirectedGraph.h">
+    <ClInclude Include="GraphNode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
