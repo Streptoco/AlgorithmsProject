@@ -2,8 +2,7 @@
 
 class DirectedGraph {
 private:
-	short m_numberOfVertex;
-	short m_contentOfVertex;
+	short m_numberOfVertex;	
 	short m_numberOfEdges;
 	list<GraphNode> m_mainList;
 public:
