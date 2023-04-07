@@ -9,7 +9,11 @@ private:
 	short m_numberOfEdgesAvailable;
 	list<GraphNode> m_secondaryList;
 public:
-
+	GraphNode(unsigned short vertexA)
+	{
+		m_vertexNumber = vertexA;
+	}
+	short getVertexNumber() { return m_vertexNumber; }
 };
 
 class DirectedGraphNode : public GraphNode {

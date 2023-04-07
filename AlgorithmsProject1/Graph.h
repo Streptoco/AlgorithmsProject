@@ -6,6 +6,7 @@ private:
 	short m_numberOfEdges;
 	list<GraphNode> m_mainList;
 public:
+	bool insertEdgeIntoGraph(unsigned short vertexA, unsigned short vertexB);
 
 };
 

@@ -127,7 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="AlgorithmsProject1.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="GraphNode.cpp" />
     <ClCompile Include="Graph.cpp" />
   </ItemGroup>

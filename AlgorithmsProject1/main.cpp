@@ -10,10 +10,11 @@ int main()
     cin >> userResponse >> n >> m;
     if (userResponse == 'y') // Directed Graph 
     {
+        DirectedGraph graph;
         // Start getting user input for the list
         for (int i = 0; i < m; i++)
         {
-            cin << vertexA << vertexB;
+            cin >> vertexA >> vertexB;
 
         }
     }
