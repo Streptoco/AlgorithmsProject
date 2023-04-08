@@ -18,18 +18,19 @@ void DriverProgram::printMenu()
         cout << "Please enter a valid input. '" << userResponse << "' isn't a valid input.";
     }
     getInputForEdgesFromUser();
+    printGraph();
 }
 
 void DriverProgram::handleDirectedGraph()
 {
     unifiedHandlerForFirstCase();
-    graph = new DirectedGraph(VAL m_NumberOfVertexes,VAL m_NumberOfEdges);
+    FREE graph = new DirectedGraph(VAL m_NumberOfVertexes,VAL m_NumberOfEdges);
 }
 
 void DriverProgram::handleUndirectedGraph()
 {
     unifiedHandlerForFirstCase();
-    graph = new UndirectedGraph(VAL m_NumberOfVertexes, VAL m_NumberOfEdges);
+    FREE graph = new UndirectedGraph(VAL m_NumberOfVertexes, VAL m_NumberOfEdges);
 }
 
 void DriverProgram::unifiedHandlerForFirstCase()
@@ -50,13 +51,11 @@ void DriverProgram::getInputForEdgesFromUser()
         cin >> currentHoldingNumber >> vertexToConnect;
         GraphNode* mainListNode = new GraphNode(currentHoldingNumber);
         GraphNode* secondaryListNode = new GraphNode(vertexToConnect);
-        if (i == 0)
-        {
-            
-        }
-        else 
-        
-            graph->addEdgeToGraph(tempNode);
-        }
+        graph->addEdgeToGraph(mainListNode, secondaryListNode);
     }
+}
+
+void DriverProgram::printGraph()
+{
+    graph->printGraph();
 }

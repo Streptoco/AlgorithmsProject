@@ -13,4 +13,5 @@ public:
 	void handleUndirectedGraph();
 	void unifiedHandlerForFirstCase();
 	void getInputForEdgesFromUser();
+	void printGraph();
 };
