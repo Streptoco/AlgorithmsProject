@@ -2,10 +2,12 @@
 #include <list>
 #include <iostream>
 using namespace std;
+#define REF
+#define VAL
 
 class GraphNode {
 private:
-	short m_vertexNumber;
+	short m_vertexNumber = 0;
 	short m_numberOfEdgesAvailable;
 	list<GraphNode> m_secondaryList;
 public:

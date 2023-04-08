@@ -127,11 +127,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="DriverProgram.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="GraphNode.cpp" />
     <ClCompile Include="Graph.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DriverProgram.h" />
     <ClInclude Include="GraphNode.h" />
     <ClInclude Include="Graph.h" />
   </ItemGroup>

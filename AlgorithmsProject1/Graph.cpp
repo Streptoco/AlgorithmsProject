@@ -1,6 +1,6 @@
 #include "Graph.h"
 
-bool DirectedGraph::insertEdgeIntoGraph(unsigned short vertexA, unsigned short vertexB)
+/*bool DirectedGraph::insertEdgeIntoGraph(unsigned short vertexA, unsigned short vertexB)
 {
 
 	GraphNode temporaryNodeToCheck = m_mainList.back();
@@ -13,4 +13,9 @@ bool DirectedGraph::insertEdgeIntoGraph(unsigned short vertexA, unsigned short v
 		GraphNode newNodeToPush(vertexA);
 		m_mainList.push_back(newNodeToPush);
 	}
+}*/
+
+void DirectedGraph::addCurrentGraphNodeToMainList(GraphNode* currentNode)
+{
+	m_mainList.push_back(currentNode);
 }
