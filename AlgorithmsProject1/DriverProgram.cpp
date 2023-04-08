@@ -48,10 +48,15 @@ void DriverProgram::getInputForEdgesFromUser()
     for (int i = 0; i < graph->getNumberOfEdges(); i++)
     {
         cin >> currentHoldingNumber >> vertexToConnect;
+        GraphNode* mainListNode = new GraphNode(currentHoldingNumber);
+        GraphNode* secondaryListNode = new GraphNode(vertexToConnect);
         if (i == 0)
         {
-            GraphNode * tempNode = new GraphNode(++i);
-            graph->addCurrentGraphNodeToMainList(tempNode);
+            
+        }
+        else 
+        
+            graph->addEdgeToGraph(tempNode);
         }
     }
 }

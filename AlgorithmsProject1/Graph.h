@@ -15,7 +15,7 @@ public:
 	short getNumberOfVertex() { return m_NumberOfVertex; }
 	short getNumberOfEdges() { return m_NumberOfEdges; }
 	short getBackValueOfMainList() { return m_mainList.back()->getVertexNumber(); }
-	void addCurrentGraphNodeToMainList(GraphNode * currentNode);
+	void addEdgeToGraph(GraphNode * i_MainListNode, GraphNode * i_SecondaryListNode);
 };
 
 class UndirectedGraph : public DirectedGraph {

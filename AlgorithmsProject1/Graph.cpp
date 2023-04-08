@@ -15,7 +15,16 @@
 	}
 }*/
 
-void DirectedGraph::addCurrentGraphNodeToMainList(GraphNode* currentNode)
+void DirectedGraph::addEdgeToGraph(GraphNode* i_MainListNode, GraphNode* i_SecondaryListNode)
 {
-	m_mainList.push_back(currentNode);
+	if (i_MainListNode->getVertexNumber() == m_mainList.back()->getVertexNumber())
+	{
+		// get secondary list addition
+	}
+	else
+	{
+		// make a new list node and add the secondary list to it.
+		m_mainList.push_back(i_MainListNode);
+	}
+	
 }
