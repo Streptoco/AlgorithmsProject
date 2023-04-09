@@ -2,7 +2,6 @@
 
 /*bool DirectedGraph::insertEdgeIntoGraph(unsigned short vertexA, unsigned short vertexB)
 {
-
 	GraphNode temporaryNodeToCheck = m_mainList.back();
 	if (temporaryNodeToCheck.getVertexNumber() == vertexA)
 	{
@@ -17,7 +16,11 @@
 
 void DirectedGraph::addEdgeToGraph(GraphNode* i_MainListNode, GraphNode* i_SecondaryListNode)
 {
-	if (i_MainListNode->getVertexNumber() == m_mainList.back()->getVertexNumber())
+	if (m_mainList.empty())
+	{
+		m_mainList.push_back(i_MainListNode);
+	}
+	else if (i_MainListNode->getVertexNumber() == m_mainList.back()->getVertexNumber())
 	{
 		// get secondary list addition
 		m_mainList.back()->addVertexToSecondaryList(i_SecondaryListNode);

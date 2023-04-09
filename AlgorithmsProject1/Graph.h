@@ -6,12 +6,11 @@ private:
 	short m_NumberOfEdges;
 	list<GraphNode*> m_mainList;
 public:
-	DirectedGraph(const int& i_NumberOfVertex = 0, const int& i_NumberOfEdges = 0)
+	DirectedGraph(int i_NumberOfVertex = 0, int i_NumberOfEdges = 0)
 	{
 		m_NumberOfVertex = i_NumberOfVertex;
 		m_NumberOfEdges = i_NumberOfEdges;
 	}
-	//bool insertEdgeIntoGraph(unsigned short REF vertexA, unsigned short REF vertexB);
 	short getNumberOfVertex() { return m_NumberOfVertex; }
 	short getNumberOfEdges() { return m_NumberOfEdges; }
 	short getBackValueOfMainList() { return m_mainList.back()->getVertexNumber(); }

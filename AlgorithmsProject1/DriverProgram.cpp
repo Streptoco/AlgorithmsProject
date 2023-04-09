@@ -9,13 +9,15 @@ void DriverProgram::printMenu()
     {
         if (userResponse == 'y')
         {
+            cout << "IN BEFORE HANDLE";
             handleDirectedGraph();
         }
         else if (userResponse == 'n')
         {
             handleUndirectedGraph();
         }
-        cout << "Please enter a valid input. '" << userResponse << "' isn't a valid input.";
+        cout << "Please enter a valid input. '" << userResponse << "' isn't a valid input.\n";
+        cin >> userResponse;
     }
     getInputForEdgesFromUser();
     printGraph();
@@ -35,10 +37,11 @@ void DriverProgram::handleUndirectedGraph()
 
 void DriverProgram::unifiedHandlerForFirstCase()
 {
+    cout << "IN DRIVER::UNIFIED_HANDLER";
     cin >> m_NumberOfVertexes >> m_NumberOfEdges;
     while (m_NumberOfEdges > m_NumberOfVertexes)
     {
-        cout << "The number of the edges cannot be great than the number of the vertices!";
+        cout << "The number of the edges cannot be greater than the number of the vertices!";
         cin >> m_NumberOfVertexes >> m_NumberOfEdges;
     }
 }
