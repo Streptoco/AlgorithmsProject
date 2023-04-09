@@ -14,25 +14,27 @@
 	}
 }*/
 
-void DirectedGraph::addEdgeToGraph(GraphNode* i_MainListNode, GraphNode* i_SecondaryListNode)
+void DirectedGraph::addEdgeToGraph(short i_currentHoldingNumber, short i_vertexToConnect)
 {
-	if (m_mainList.empty())
+
+
+
+	if (m_mainList.empty() || i_currentHoldingNumber != m_mainList.back()->getVertexNumber())
 	{
-		m_mainList.push_back(i_MainListNode);
-	}
-	else if (i_MainListNode->getVertexNumber() == m_mainList.back()->getVertexNumber())
-	{
-		// get secondary list addition
-		m_mainList.back()->addVertexToSecondaryList(i_SecondaryListNode);
+		FREE GraphNode* mainListNode = new GraphNode(i_currentHoldingNumber);
+		FREE GraphNode* secondaryListNode = new GraphNode(i_vertexToConnect);
+		m_mainList.push_back(mainListNode);
+		m_mainList.back()->addVertexToSecondaryList(secondaryListNode);
 	}
 	else
 	{
-		// make a new list node and add the secondary list to it.
-		m_mainList.push_back(i_MainListNode);
-		m_mainList.back()->addVertexToSecondaryList(i_SecondaryListNode);
+		// get secondary list addition
+		FREE GraphNode* secondaryListNode = new GraphNode(i_vertexToConnect);
+		m_mainList.back()->addVertexToSecondaryList(secondaryListNode);
 	}
-	
 }
+
+
 
 void DirectedGraph::printGraph()
 {
