@@ -39,7 +39,6 @@ void DriverProgram::handleUndirectedGraph()
 
 void DriverProgram::unifiedHandlerForFirstCase()
 {
-	cout << "IN DRIVER::UNIFIED_HANDLER\n";
 	cin >> m_NumberOfVertexes >> m_NumberOfEdges;
 	while (m_NumberOfEdges > m_NumberOfVertexes)
 	{

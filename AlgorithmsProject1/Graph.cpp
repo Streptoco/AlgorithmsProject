@@ -19,18 +19,18 @@ void DirectedGraph::addEdgeToGraph(short i_currentHoldingNumber, short i_vertexT
 
 
 
-	if (m_mainList.empty() || i_currentHoldingNumber != m_mainList.back()->getVertexNumber())
+	if (m_mainVector.empty() || i_currentHoldingNumber != m_mainVector.back()->getVertexNumber())
 	{
 		FREE GraphNode* mainListNode = new GraphNode(i_currentHoldingNumber);
 		FREE GraphNode* secondaryListNode = new GraphNode(i_vertexToConnect);
-		m_mainList.push_back(mainListNode);
-		m_mainList.back()->addVertexToSecondaryList(secondaryListNode);
+		m_mainVector.push_back(mainListNode);
+		m_mainVector.back()->addVertexToSecondaryList(secondaryListNode);
 	}
 	else
 	{
 		// get secondary list addition
 		FREE GraphNode* secondaryListNode = new GraphNode(i_vertexToConnect);
-		m_mainList.back()->addVertexToSecondaryList(secondaryListNode);
+		m_mainVector.back()->addVertexToSecondaryList(secondaryListNode);
 	}
 }
 
@@ -38,15 +38,15 @@ void DirectedGraph::addEdgeToGraph(short i_currentHoldingNumber, short i_vertexT
 
 void DirectedGraph::printGraph()
 {
-	list<GraphNode*>::iterator listItr;
-	for (listItr = m_mainList.begin(); listItr != m_mainList.end(); ++listItr)
+	vector<GraphNode*>::iterator listItr;
+	for (listItr = m_mainVector.begin(); listItr != m_mainVector.end(); ++listItr)
 	{
 		cout << "Main list node: " << (*listItr)->getVertexNumber() << "\n";
 		(*listItr)->printSecondaryNodes();
 	}
 }
 
-list<GraphNode*> DirectedGraph::findCircuit(GraphNode* i_startingVertex)
+/*list<GraphNode*> DirectedGraph::findCircuit(GraphNode* i_startingVertex)
 {
 	GraphNode* currentVertex = i_startingVertex;
 	list<GraphNode*> resultList;
@@ -58,7 +58,7 @@ list<GraphNode*> DirectedGraph::findCircuit(GraphNode* i_startingVertex)
 		{
 			(*secondaryListItr)->visitVertex();
 			resultList.push_back((*secondaryListItr));
-			 
+			
 		}
 	}
-}
+}*/
