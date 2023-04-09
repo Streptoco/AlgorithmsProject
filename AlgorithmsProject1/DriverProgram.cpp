@@ -41,19 +41,12 @@ void DriverProgram::unifiedHandlerForFirstCase()
 {
 	cout << "IN DRIVER::UNIFIED_HANDLER\n";
 	cin >> m_NumberOfVertexes >> m_NumberOfEdges;
-	while (m_NumberOfEdges > m_NumberOfVertexes)
-	{
-		// WHY ???
-		cout << "The number of the edges cannot be greater than the number of the vertices!\n";
-		break;
-		cin >> m_NumberOfVertexes >> m_NumberOfEdges;
-	}
 }
 
 void DriverProgram::getInputForEdgesFromUser()
 {
 	short currentHoldingNumber, vertexToConnect;
-	for (int i = 0; i < graph->getNumberOfEdges(); i++)
+	for (int i = 1; i <= graph->getNumberOfEdges(); i++)
 	{
 		cin >> currentHoldingNumber >> vertexToConnect;
 		graph->addEdgeToGraph(currentHoldingNumber, vertexToConnect);
