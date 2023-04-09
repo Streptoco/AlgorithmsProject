@@ -45,3 +45,20 @@ void DirectedGraph::printGraph()
 		(*listItr)->printSecondaryNodes();
 	}
 }
+
+list<GraphNode*> DirectedGraph::findCircuit(GraphNode* i_startingVertex)
+{
+	GraphNode* currentVertex = i_startingVertex;
+	list<GraphNode*> resultList;
+	list<GraphNode*>::iterator secondaryListItr = currentVertex->getHeadOfSecondaryList();
+	resultList.push_back(currentVertex);
+	while (currentVertex->isSecondaryListEmpty())
+	{
+		if ((*secondaryListItr)->isVisited() == false)
+		{
+			(*secondaryListItr)->visitVertex();
+			resultList.push_back((*secondaryListItr));
+			 
+		}
+	}
+}

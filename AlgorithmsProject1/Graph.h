@@ -16,6 +16,7 @@ public:
 	short getBackValueOfMainList() { return m_mainList.back()->getVertexNumber(); }
 	void addEdgeToGraph(short currentHoldingNumber, short vertexToConnect);
 	void printGraph();
+	list<GraphNode*> findCircuit(GraphNode* i_startingVertex);
 };
 
 class UndirectedGraph : public DirectedGraph {
