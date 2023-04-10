@@ -16,22 +16,7 @@
 
 void DirectedGraph::addEdgeToGraph(short i_currentHoldingNumber, short i_vertexToConnect)
 {
-
-
-
-	if (m_mainVector.empty() || i_currentHoldingNumber != m_mainVector.back()->getVertexNumber())
-	{
-		FREE GraphNode* mainListNode = new GraphNode(i_currentHoldingNumber);
-		FREE GraphNode* secondaryListNode = new GraphNode(i_vertexToConnect);
-		m_mainVector.push_back(mainListNode);
-		m_mainVector.back()->addVertexToSecondaryList(secondaryListNode);
-	}
-	else
-	{
-		// get secondary list addition
-		FREE GraphNode* secondaryListNode = new GraphNode(i_vertexToConnect);
-		m_mainVector.back()->addVertexToSecondaryList(secondaryListNode);
-	}
+	m_mainVector[i_currentHoldingNumber]->addVertexToSecondaryList(i_vertexToConnect);
 }
 
 

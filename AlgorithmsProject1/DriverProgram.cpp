@@ -9,7 +9,6 @@ void DriverProgram::printMenu()
 		cin >> userResponse;
 		if (userResponse == 'y')
 		{
-			cout << "IN BEFORE HANDLE\n";
 			handleDirectedGraph();
 		}
 		else if (userResponse == 'n')
@@ -40,13 +39,6 @@ void DriverProgram::handleUndirectedGraph()
 void DriverProgram::unifiedHandlerForFirstCase()
 {
 	cin >> m_NumberOfVertexes >> m_NumberOfEdges;
-	while (m_NumberOfEdges > m_NumberOfVertexes)
-	{
-		// WHY ???
-		cout << "The number of the edges cannot be greater than the number of the vertices!\n";
-		break;
-		cin >> m_NumberOfVertexes >> m_NumberOfEdges;
-	}
 }
 
 void DriverProgram::getInputForEdgesFromUser()

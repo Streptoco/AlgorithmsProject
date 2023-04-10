@@ -1,8 +1,9 @@
 #include "GraphNode.h"
 
-void GraphNode::addVertexToSecondaryList(GraphNode* i_VertexToSecondary)
+void GraphNode::addVertexToSecondaryList(short i_VertexToSecondary)
 {
-	m_secondaryList.push_back(i_VertexToSecondary);
+	FREE GraphNode* secondaryNodeToPush = new GraphNode(i_VertexToSecondary);
+	m_secondaryList.push_back(secondaryNodeToPush);
 }
 
 void GraphNode::printSecondaryNodes()

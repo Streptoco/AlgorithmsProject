@@ -18,7 +18,7 @@ public:
 		m_vertexNumber = i_VertexNumber;
 	}
 	short getVertexNumber() { return m_vertexNumber; }
-	void addVertexToSecondaryList(GraphNode* i_VertexToSecondary);
+	void addVertexToSecondaryList(short i_VertexToSecondary);
 	void printSecondaryNodes();
 	bool isSecondaryListEmpty() { return m_secondaryList.empty(); }
 	void visitVertex() { m_isVisited = true; }
