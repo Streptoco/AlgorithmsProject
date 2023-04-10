@@ -9,8 +9,12 @@ void GraphNode::addVertexToSecondaryList(short i_VertexToSecondary)
 void GraphNode::printSecondaryNodes()
 {
 	list<GraphNode*>::iterator secondaryListItr;
-	for (secondaryListItr = m_secondaryList.begin(); secondaryListItr != m_secondaryList.end(); ++secondaryListItr)
+	if (!m_secondaryList.empty())
 	{
-		cout << "Current secondary vertex: " << (*secondaryListItr)->getVertexNumber() << "\n";
+		cout << "current graph node: " << this->getVertexNumber();
+		for (secondaryListItr = m_secondaryList.begin() ; secondaryListItr != m_secondaryList.end(); ++secondaryListItr)
+		{
+			cout << "Current secondary vertex: " << (*secondaryListItr)->getVertexNumber() << "\n";
+		}
 	}
 }

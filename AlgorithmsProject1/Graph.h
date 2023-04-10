@@ -13,7 +13,7 @@ public:
 		FREE GraphNode* nodeArr = new GraphNode[m_NumberOfVertex];
 		for (int i = 0; i < i_NumberOfVertex; i++)
 		{
-			nodeArr[i].setVertexNumber(++i);
+			nodeArr[i].setVertexNumber(i+1);
 			m_mainVector.push_back(&nodeArr[i]);
 		}
 	}
