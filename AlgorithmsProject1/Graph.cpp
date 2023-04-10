@@ -43,5 +43,7 @@ list<GraphNode*> DirectedGraph::findCircuit(GraphNode* i_startingVertex)
 	else
 	{
 		cout << "No circuits exist!\n";
+		resultList.clear();
+		return resultList;
 	}
 }
