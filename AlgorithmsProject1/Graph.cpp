@@ -3,6 +3,7 @@
 void DirectedGraph::addEdgeToGraph(short i_currentHoldingNumber, short i_vertexToConnect)
 {
 	m_mainVector[i_currentHoldingNumber - 1]->addVertexToSecondaryList(i_vertexToConnect);
+	m_mainVector[i_currentHoldingNumber - 1]->setNumberOfAvailableEdges();
 }
 
 
@@ -29,6 +30,11 @@ list<GraphNode*> DirectedGraph::findCircuit(GraphNode* i_startingVertex)
 		{
 			(*secondaryListItr)->visitVertex();
 			resultList.push_back((*secondaryListItr));
+			findCircuit(*(secondaryListItr));
+		}
+		else
+		{
+			
 		}
 	}
 	return resultList;

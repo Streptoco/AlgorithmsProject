@@ -21,9 +21,10 @@ public:
 	void addVertexToSecondaryList(short i_VertexToSecondary);
 	void printSecondaryNodes();
 	bool isSecondaryListEmpty() { return m_secondaryList.empty(); }
-	void visitVertex() { m_isVisited = true; }
+	void visitVertex() { m_isVisited = true; m_numberOfEdgesAvailable--; }
 	bool isVisited() { return m_isVisited; }
 	void setVertexNumber(int i_VertexNumber) { m_vertexNumber = i_VertexNumber; }
+	void setNumberOfAvailableEdges() { m_numberOfEdgesAvailable++; }
 	list<GraphNode*>::iterator getHeadOfSecondaryList() { return m_secondaryList.begin(); }
 };
 
