@@ -1,42 +1,35 @@
 #include "Graph.h"
 
-/*bool DirectedGraph::insertEdgeIntoGraph(unsigned short vertexA, unsigned short vertexB)
+void DirectedGraph::addEdgeToGraph(short i_currentHoldingNumber, short i_vertexToConnect)
 {
-
-	GraphNode temporaryNodeToCheck = m_mainList.back();
-	if (temporaryNodeToCheck.getVertexNumber() == vertexA)
-	{
-		// HANDLE CASE WHERE WE DONT ADD
-	}
-	else
-	{
-		GraphNode newNodeToPush(vertexA);
-		m_mainList.push_back(newNodeToPush);
-	}
-}*/
-
-void DirectedGraph::addEdgeToGraph(GraphNode* i_MainListNode, GraphNode* i_SecondaryListNode)
-{
-	if (i_MainListNode->getVertexNumber() == m_mainList.back()->getVertexNumber())
-	{
-		// get secondary list addition
-		m_mainList.back()->addVertexToSecondaryList(i_SecondaryListNode);
-	}
-	else
-	{
-		// make a new list node and add the secondary list to it.
-		m_mainList.push_back(i_MainListNode);
-		m_mainList.back()->addVertexToSecondaryList(i_SecondaryListNode);
-	}
-	
+	m_mainVector[i_currentHoldingNumber - 1]->addVertexToSecondaryList(i_vertexToConnect);
 }
+
+
 
 void DirectedGraph::printGraph()
 {
-	list<GraphNode*>::iterator listItr;
-	for (listItr = m_mainList.begin(); listItr != m_mainList.end(); ++listItr)
+	vector<GraphNode*>::iterator listItr;
+	for (listItr = m_mainVector.begin(); listItr != m_mainVector.end(); ++listItr)
 	{
 		cout << "Main list node: " << (*listItr)->getVertexNumber() << "\n";
 		(*listItr)->printSecondaryNodes();
 	}
+}
+
+list<GraphNode*> DirectedGraph::findCircuit(GraphNode* i_startingVertex)
+{
+	GraphNode* currentVertex = i_startingVertex;
+	list<GraphNode*> resultList;
+	list<GraphNode*>::iterator secondaryListItr = currentVertex->getHeadOfSecondaryList();
+	resultList.push_back(currentVertex);
+	while (currentVertex->isSecondaryListEmpty())
+	{
+		if ((*secondaryListItr)->isVisited() == false)
+		{
+			(*secondaryListItr)->visitVertex();
+			resultList.push_back((*secondaryListItr));
+		}
+	}
+	return resultList;
 }

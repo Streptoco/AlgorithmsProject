@@ -4,26 +4,32 @@ class DirectedGraph {
 private:
 	short m_NumberOfVertex;	
 	short m_NumberOfEdges;
-	list<GraphNode*> m_mainList;
+	vector<GraphNode*> m_mainVector;
 public:
-	DirectedGraph(const int& i_NumberOfVertex = 0, const int& i_NumberOfEdges = 0)
+	DirectedGraph(int i_NumberOfVertex = 0, int i_NumberOfEdges = 0)
 	{
 		m_NumberOfVertex = i_NumberOfVertex;
 		m_NumberOfEdges = i_NumberOfEdges;
+		FREE GraphNode* nodeArr = new GraphNode[m_NumberOfVertex];
+		for (int i = 0; i < i_NumberOfVertex; i++)
+		{
+			nodeArr[i].setVertexNumber(i+1);
+			m_mainVector.push_back(&nodeArr[i]);
+		}
 	}
-	//bool insertEdgeIntoGraph(unsigned short REF vertexA, unsigned short REF vertexB);
 	short getNumberOfVertex() { return m_NumberOfVertex; }
 	short getNumberOfEdges() { return m_NumberOfEdges; }
-	short getBackValueOfMainList() { return m_mainList.back()->getVertexNumber(); }
-	void addEdgeToGraph(GraphNode * i_MainListNode, GraphNode * i_SecondaryListNode);
+	short getBackValueOfMainList() { return m_mainVector.back()->getVertexNumber(); }
+	void addEdgeToGraph(short currentHoldingNumber, short vertexToConnect);
 	void printGraph();
+	list<GraphNode*> findCircuit(GraphNode* i_startingVertex);
 };
 
 class UndirectedGraph : public DirectedGraph {
 private:
 	short m_numberOfVertex;
 	short m_numberOfEdges;
-	list<GraphNode> m_mainList;
+	list<GraphNode> m_mainVector;
 public:
 	UndirectedGraph(int i_NumberOfVertex, int i_NumberOfEdges)
 	{
