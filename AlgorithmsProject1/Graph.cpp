@@ -1,19 +1,5 @@
 #include "Graph.h"
 
-/*bool DirectedGraph::insertEdgeIntoGraph(unsigned short vertexA, unsigned short vertexB)
-{
-	GraphNode temporaryNodeToCheck = m_mainList.back();
-	if (temporaryNodeToCheck.getVertexNumber() == vertexA)
-	{
-		// HANDLE CASE WHERE WE DONT ADD
-	}
-	else
-	{
-		GraphNode newNodeToPush(vertexA);
-		m_mainList.push_back(newNodeToPush);
-	}
-}*/
-
 void DirectedGraph::addEdgeToGraph(short i_currentHoldingNumber, short i_vertexToConnect)
 {
 	m_mainVector[i_currentHoldingNumber]->addVertexToSecondaryList(i_vertexToConnect);
@@ -31,7 +17,7 @@ void DirectedGraph::printGraph()
 	}
 }
 
-/*list<GraphNode*> DirectedGraph::findCircuit(GraphNode* i_startingVertex)
+list<GraphNode*> DirectedGraph::findCircuit(GraphNode* i_startingVertex)
 {
 	GraphNode* currentVertex = i_startingVertex;
 	list<GraphNode*> resultList;
@@ -46,4 +32,4 @@ void DirectedGraph::printGraph()
 			
 		}
 	}
-}*/
+}

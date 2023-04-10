@@ -13,7 +13,7 @@ private:
 	list<GraphNode*> m_secondaryList;
 	bool m_isVisited = false;
 public:
-	GraphNode(unsigned short i_VertexNumber)
+	GraphNode(unsigned short i_VertexNumber = 0)
 	{
 		m_vertexNumber = i_VertexNumber;
 	}
@@ -23,6 +23,7 @@ public:
 	bool isSecondaryListEmpty() { return m_secondaryList.empty(); }
 	void visitVertex() { m_isVisited = true; }
 	bool isVisited() { return m_isVisited; }
+	void setVertexNumber(int i_VertexNumber) { m_vertexNumber = i_VertexNumber; }
 	list<GraphNode*>::iterator getHeadOfSecondaryList() { return m_secondaryList.begin(); }
 };
 

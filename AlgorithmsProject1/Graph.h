@@ -10,6 +10,12 @@ public:
 	{
 		m_NumberOfVertex = i_NumberOfVertex;
 		m_NumberOfEdges = i_NumberOfEdges;
+		FREE GraphNode* nodeArr = new GraphNode[m_NumberOfVertex];
+		for (int i = 0; i < i_NumberOfVertex; i++)
+		{
+			nodeArr[i].setVertexNumber(++i);
+			m_mainVector.push_back(&nodeArr[i]);
+		}
 	}
 	short getNumberOfVertex() { return m_NumberOfVertex; }
 	short getNumberOfEdges() { return m_NumberOfEdges; }
