@@ -30,7 +30,7 @@ public:
 	void substractNumberOfAvailableEdges() { m_numberOfEdgesAvailable--; }
 	void setMutualPointerForVertex(GraphNode* mutualPointer) { m_mutualPointerToFriend = mutualPointer; }
 	GraphNode* getMutualPointerForMainVertex() { return m_mutualPointerToFriend; }
-	list<GraphNode*>::iterator getHeadOfSecondaryList() { return m_secondaryList.begin(); }
+	list<GraphNode*>::iterator getNextAvailableVertexInList();
 };
 
 class DirectedGraphNode : public GraphNode {

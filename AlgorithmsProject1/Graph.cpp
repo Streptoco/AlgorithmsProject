@@ -27,17 +27,13 @@ list<GraphNode*> DirectedGraph::findCircuit(GraphNode* i_startingVertex)
 	resultList.push_back(currentVertex);
 	while (currentVertex->getNumberOfAvailableEdges() > 0)
 	{
-		secondaryListItr = currentVertex->getHeadOfSecondaryList();
+		secondaryListItr = currentVertex->getNextAvailableVertexInList();
 		if ((*secondaryListItr)->isVisited() == false)
 		{
 			(*secondaryListItr)->visitVertex();
 			currentVertex->substractNumberOfAvailableEdges();
 			resultList.push_back((*secondaryListItr));
 			currentVertex = (*secondaryListItr)->getMutualPointerForMainVertex();
-		}
-		else
-		{
-			++secondaryListItr;
 		}
 	}
 	if (resultList.back()->getVertexNumber() == resultList.front()->getVertexNumber())
