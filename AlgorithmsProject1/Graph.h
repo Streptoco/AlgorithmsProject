@@ -24,6 +24,7 @@ public:
 	void printGraph();
 	GraphNode* returnFirstVector() { return m_mainVector[0]; }
 	list<GraphNode*> findCircuit(GraphNode* i_startingVertex);
+	list<GraphNode*> euler();
 };
 
 class UndirectedGraph : public DirectedGraph {

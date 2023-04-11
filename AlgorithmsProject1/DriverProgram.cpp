@@ -22,7 +22,7 @@ void DriverProgram::printMenu()
 	} while (userResponse != 'y' && userResponse != 'n');
 	getInputForEdgesFromUser();
 	printGraph();
-	printList(graph->findCircuit(graph->returnFirstVector()));
+	printList(graph->euler());
 }
 
 void DriverProgram::handleDirectedGraph()
@@ -64,4 +64,5 @@ void DriverProgram::printList(list<GraphNode*> resultList)
 	{
 		cout << (*listItr)->getVertexNumber() << ", ";
 	}
+	cout << endl;
 }

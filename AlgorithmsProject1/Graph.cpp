@@ -35,6 +35,10 @@ list<GraphNode*> DirectedGraph::findCircuit(GraphNode* i_startingVertex)
 			resultList.push_back((*secondaryListItr));
 			currentVertex = (*secondaryListItr)->getMutualPointerForMainVertex();
 		}
+		else
+		{
+			++secondaryListItr;
+		}
 	}
 	if (resultList.back()->getVertexNumber() == resultList.front()->getVertexNumber())
 	{
@@ -45,5 +49,34 @@ list<GraphNode*> DirectedGraph::findCircuit(GraphNode* i_startingVertex)
 		cout << "No circuits exist!\n";
 		resultList.clear();
 		return resultList;
+	}
+}
+
+list<GraphNode*> DirectedGraph::euler()
+{
+	GraphNode* currentVertex;
+	list<GraphNode*> eulerResultList;
+	list<GraphNode*> temporaryListToPaste;
+	eulerResultList = findCircuit(m_mainVector[0]);
+
+	list<GraphNode*>::iterator eulerIterator = eulerResultList.begin();
+	++eulerIterator;
+
+	for (; eulerIterator != eulerResultList.end() && (*eulerIterator)->getNumberOfAvailableEdges() > 0; ++eulerIterator)
+	{
+		currentVertex = (*eulerIterator);
+		temporaryListToPaste = findCircuit(currentVertex);
+		eulerResultList.insert(eulerIterator, temporaryListToPaste.begin(), temporaryListToPaste.end());
+	}
+	if (eulerResultList.back()->getVertexNumber() == eulerResultList.front()->getVertexNumber())
+	{
+		cout << "Euler graph exists!\n";
+		return eulerResultList;
+	}
+	else
+	{
+		cout << "No euler graph exists!\n";
+		eulerResultList.clear();
+		return eulerResultList;
 	}
 }
