@@ -7,7 +7,7 @@ private:
 	vector<GraphNode*> m_mainVector;
 public:
 	DirectedGraph(int i_NumberOfVertex = 0, int i_NumberOfEdges = 0);
-	~DirectedGraph();
+	//~DirectedGraph();
 	virtual void addEdgeToGraph(short currentHoldingNumber, short vertexToConnect);
 	void insertEdgeToGraph(short i_currentHoldingNumber, short i_vertexToConnect);
 	void printGraph();
@@ -20,7 +20,6 @@ public:
 	short getNumberOfEdges() { return m_NumberOfEdges; }
 	short getBackValueOfMainList() { return m_mainVector.back()->getVertexNumber(); }
 	GraphNode* getFirstVector() { return m_mainVector[0]; }
-	
 	
 };
 

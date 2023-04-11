@@ -32,10 +32,3 @@ public:
 	GraphNode* getMutualPointerForMainVertex() { return m_mutualPointerToFriend; }
 	list<GraphNode*>::iterator getNextAvailableVertexInList();
 };
-
-class DirectedGraphNode : public GraphNode {
-private:
-
-public:
-
-};

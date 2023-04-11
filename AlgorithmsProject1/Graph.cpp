@@ -39,6 +39,15 @@ list<GraphNode*> DirectedGraph::findCircuit(GraphNode* i_startingVertex)
 		if ((*secondaryListItr)->isVisited() == false)
 		{
 			(*secondaryListItr)->visitVertex();
+			UndirectedGraph* unDirectedGraph = dynamic_cast<UndirectedGraph*>(this);
+			if(unDirectedGraph != nullptr)
+			{
+				short getCurrentVertex = currentVertex->getVertexNumber();
+				if((*secondaryListItr)->getMutualPointerForMainVertex()->isVisited() == true)
+				{
+					continue;
+				}
+			}
 			currentVertex->substractNumberOfAvailableEdges();
 			resultList.push_back((*secondaryListItr)->getMutualPointerForMainVertex());
 			currentVertex = (*secondaryListItr)->getMutualPointerForMainVertex();
@@ -68,19 +77,20 @@ void DirectedGraph::insertEdgeToGraph(short i_currentHoldingNumber, short i_vert
 
 }
 
-DirectedGraph::~DirectedGraph()
-{
-	vector< GraphNode* > ::iterator itr, itrEnd = m_mainVector.end();
-	for (itr = m_mainVector.begin(); itr != itrEnd; ++itr)
-	{
-		delete (*itr);
-	}
-	/*for(auto v : m_mainVector)
-	{
-		delete[] v;
-	}*/
-	m_mainVector.clear();
-}
+//DirectedGraph::~DirectedGraph()
+//{
+//	vector< GraphNode* > ::iterator itr, itrEnd = m_mainVector.end();
+//	for (itr = m_mainVector.begin(); itr != itrEnd; ++itr)
+//	{
+//		delete (*itr);
+//	}
+//	/*for(auto v : m_mainVector)
+//	{
+//		delete[] v;
+//	}*/
+//	m_mainVector.clear();
+//}
+
 list<GraphNode*> DirectedGraph::euler()
 {
 	GraphNode* currentVertex;
