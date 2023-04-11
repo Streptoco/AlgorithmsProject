@@ -18,3 +18,15 @@ void GraphNode::printSecondaryNodes()
 		}
 	}
 }
+
+list<GraphNode*>::iterator GraphNode::getNextAvailableVertexInList()
+{
+	list<GraphNode*>::iterator listItr = m_secondaryList.begin();
+	for (; listItr != m_secondaryList.end(); ++listItr)
+	{
+		if (!(*listItr)->isVisited())
+		{
+			return listItr;
+		}
+	}
+}

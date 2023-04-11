@@ -17,8 +17,6 @@ void DirectedGraph::addEdgeToGraph(short i_currentHoldingNumber, short i_vertexT
 	insertEdgeToGraph(i_currentHoldingNumber, i_vertexToConnect);
 }
 
-
-
 void DirectedGraph::printGraph()
 {
 	vector<GraphNode*>::iterator listItr;
@@ -37,13 +35,17 @@ list<GraphNode*> DirectedGraph::findCircuit(GraphNode* i_startingVertex)
 	resultList.push_back(currentVertex);
 	while (currentVertex->getNumberOfAvailableEdges() > 0)
 	{
-		secondaryListItr = currentVertex->getHeadOfSecondaryList();
+		secondaryListItr = currentVertex->getNextAvailableVertexInList();
 		if ((*secondaryListItr)->isVisited() == false)
 		{
 			(*secondaryListItr)->visitVertex();
 			currentVertex->substractNumberOfAvailableEdges();
-			resultList.push_back((*secondaryListItr));
+			resultList.push_back((*secondaryListItr)->getMutualPointerForMainVertex());
 			currentVertex = (*secondaryListItr)->getMutualPointerForMainVertex();
+		}
+		if (i_startingVertex == currentVertex)
+		{
+			return resultList;
 		}
 	}
 	if (resultList.back()->getVertexNumber() == resultList.front()->getVertexNumber())
@@ -78,4 +80,39 @@ DirectedGraph::~DirectedGraph()
 		delete[] v;
 	}*/
 	m_mainVector.clear();
+}
+list<GraphNode*> DirectedGraph::euler()
+{
+	GraphNode* currentVertex;
+	list<GraphNode*> eulerResultList;
+	list<GraphNode*> temporaryListToPaste;
+	eulerResultList = findCircuit(m_mainVector[0]);
+	if (eulerResultList.empty())
+	{
+		return eulerResultList;
+	}
+
+	list<GraphNode*>::iterator eulerIterator = eulerResultList.begin();
+	++eulerIterator;
+
+	for (; eulerIterator != eulerResultList.end(); ++eulerIterator)
+	{
+		if ((*eulerIterator)->getNumberOfAvailableEdges() > 0)
+		{
+			currentVertex = (*eulerIterator);
+			temporaryListToPaste = findCircuit(currentVertex);
+			eulerIterator = eulerResultList.insert(eulerIterator, temporaryListToPaste.begin(), --temporaryListToPaste.end());
+		}
+	}
+	if (eulerResultList.back()->getVertexNumber() == eulerResultList.front()->getVertexNumber())
+	{
+		cout << "Euler graph exists!\n";
+		return eulerResultList;
+	}
+	else
+	{
+		cout << "No euler graph exists!\n";
+		eulerResultList.clear();
+		return eulerResultList;
+	}
 }
