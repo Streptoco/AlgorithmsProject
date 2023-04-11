@@ -22,7 +22,7 @@ void DriverProgram::printMenu()
 	} while (userResponse != 'y' && userResponse != 'n');
 	getInputForEdgesFromUser();
 	printGraph();
-	printList(graph->findCircuit(graph->returnFirstVector()));
+	//printList(graph->findCircuit(graph->getFirstVector()));
 }
 
 void DriverProgram::handleDirectedGraph()
