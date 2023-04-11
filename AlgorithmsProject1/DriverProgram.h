@@ -13,4 +13,5 @@ public:
 	void unifiedHandlerForFirstCase();
 	void getInputForEdgesFromUser();
 	void printGraph();
+	void printList(list<GraphNode*> resultList);
 };

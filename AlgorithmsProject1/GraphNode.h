@@ -11,6 +11,7 @@ private:
 	short m_vertexNumber = 0;
 	short m_numberOfEdgesAvailable = 0;
 	list<GraphNode*> m_secondaryList;
+	GraphNode* m_mutualPointerToFriend = nullptr;
 	bool m_isVisited = false;
 public:
 	GraphNode(unsigned short i_VertexNumber = 0)
@@ -18,13 +19,18 @@ public:
 		m_vertexNumber = i_VertexNumber;
 	}
 	short getVertexNumber() { return m_vertexNumber; }
-	void addVertexToSecondaryList(short i_VertexToSecondary);
+	short getNumberOfAvailableEdges() { return m_numberOfEdgesAvailable; }
+	void addVertexToSecondaryList(short i_VertexToSecondary, GraphNode* getMutualPointerForVertex);
 	void printSecondaryNodes();
 	bool isSecondaryListEmpty() { return m_secondaryList.empty(); }
 	void visitVertex() { m_isVisited = true; }
 	bool isVisited() { return m_isVisited; }
 	void setVertexNumber(int i_VertexNumber) { m_vertexNumber = i_VertexNumber; }
-	list<GraphNode*>::iterator getHeadOfSecondaryList() { return m_secondaryList.begin(); }
+	void setNumberOfAvailableEdges() { m_numberOfEdgesAvailable++; }
+	void substractNumberOfAvailableEdges() { m_numberOfEdgesAvailable--; }
+	void setMutualPointerForVertex(GraphNode* mutualPointer) { m_mutualPointerToFriend = mutualPointer; }
+	GraphNode* getMutualPointerForMainVertex() { return m_mutualPointerToFriend; }
+	list<GraphNode*>::iterator getNextAvailableVertexInList();
 };
 
 class DirectedGraphNode : public GraphNode {
