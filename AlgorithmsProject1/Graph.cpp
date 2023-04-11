@@ -1,10 +1,20 @@
 #include "Graph.h"
 
+DirectedGraph::DirectedGraph(int i_NumberOfVertex, int i_NumberOfEdges)
+{
+	m_NumberOfVertex = i_NumberOfVertex;
+	m_NumberOfEdges = i_NumberOfEdges;
+	FREE GraphNode* nodeArr = new GraphNode[m_NumberOfVertex];
+	for (int i = 0; i < i_NumberOfVertex; i++)
+	{
+		nodeArr[i].setVertexNumber(i + 1);
+		m_mainVector.push_back(&nodeArr[i]);
+	}
+}
+
 void DirectedGraph::addEdgeToGraph(short i_currentHoldingNumber, short i_vertexToConnect)
 {
-	GraphNode* getMutualPointerForVertex = m_mainVector[i_vertexToConnect - 1];
-	m_mainVector[i_currentHoldingNumber - 1]->addVertexToSecondaryList(i_vertexToConnect, getMutualPointerForVertex);
-	m_mainVector[i_currentHoldingNumber - 1]->setNumberOfAvailableEdges();
+	insertEdgeToGraph(i_currentHoldingNumber, i_vertexToConnect);
 }
 
 void DirectedGraph::printGraph()
@@ -50,6 +60,27 @@ list<GraphNode*> DirectedGraph::findCircuit(GraphNode* i_startingVertex)
 	}
 }
 
+void DirectedGraph::insertEdgeToGraph(short i_currentHoldingNumber, short i_vertexToConnect)
+{
+	GraphNode* getMutualPointerForVertex = m_mainVector[i_vertexToConnect - 1];
+	m_mainVector[i_currentHoldingNumber - 1]->addVertexToSecondaryList(i_vertexToConnect, getMutualPointerForVertex);
+	m_mainVector[i_currentHoldingNumber - 1]->setNumberOfAvailableEdges();
+
+}
+
+DirectedGraph::~DirectedGraph()
+{
+	vector< GraphNode* > ::iterator itr, itrEnd = m_mainVector.end();
+	for(itr = m_mainVector.begin(); itr != itrEnd; ++itr)
+	{
+		delete (*itr);
+	}
+	/*for(auto v : m_mainVector)
+	{
+		delete[] v;
+	}*/
+	m_mainVector.clear();
+}
 list<GraphNode*> DirectedGraph::euler()
 {
 	GraphNode* currentVertex;
