@@ -14,5 +14,5 @@ public:
 	void getInputForEdgesFromUser();
 	void printGraph();
 	void printList(list<GraphNode*> resultList);
-	~DriverProgram() { delete[] graph; }
+	//~DriverProgram() { delete[] graph; }
 };

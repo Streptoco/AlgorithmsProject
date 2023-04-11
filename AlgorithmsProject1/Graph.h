@@ -12,6 +12,7 @@ public:
 	void insertEdgeToGraph(short i_currentHoldingNumber, short i_vertexToConnect);
 	void printGraph();
 	list<GraphNode*> findCircuit(GraphNode* i_startingVertex);
+	list<GraphNode*> euler();
 
 
 	//Getter's
@@ -19,11 +20,8 @@ public:
 	short getNumberOfEdges() { return m_NumberOfEdges; }
 	short getBackValueOfMainList() { return m_mainVector.back()->getVertexNumber(); }
 	GraphNode* getFirstVector() { return m_mainVector[0]; }
-	void addEdgeToGraph(short currentHoldingNumber, short vertexToConnect);
-	void printGraph();
-	GraphNode* returnFirstVector() { return m_mainVector[0]; }
-	list<GraphNode*> findCircuit(GraphNode* i_startingVertex);
-	list<GraphNode*> euler();
+	
+	
 };
 
 class UndirectedGraph : public DirectedGraph {

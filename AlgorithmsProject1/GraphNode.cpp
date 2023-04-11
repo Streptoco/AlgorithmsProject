@@ -12,7 +12,7 @@ void GraphNode::printSecondaryNodes()
 	list<GraphNode*>::iterator secondaryListItr;
 	if (!m_secondaryList.empty())
 	{
-		for (secondaryListItr = m_secondaryList.begin() ; secondaryListItr != m_secondaryList.end(); ++secondaryListItr)
+		for (secondaryListItr = m_secondaryList.begin(); secondaryListItr != m_secondaryList.end(); ++secondaryListItr)
 		{
 			cout << "Current secondary vertex: " << (*secondaryListItr)->getVertexNumber() << "\n";
 		}

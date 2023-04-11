@@ -71,7 +71,7 @@ void DirectedGraph::insertEdgeToGraph(short i_currentHoldingNumber, short i_vert
 DirectedGraph::~DirectedGraph()
 {
 	vector< GraphNode* > ::iterator itr, itrEnd = m_mainVector.end();
-	for(itr = m_mainVector.begin(); itr != itrEnd; ++itr)
+	for (itr = m_mainVector.begin(); itr != itrEnd; ++itr)
 	{
 		delete (*itr);
 	}
