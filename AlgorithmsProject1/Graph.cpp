@@ -9,7 +9,7 @@ DirectedGraph::DirectedGraph(int i_NumberOfVertex, int i_NumberOfEdges)
 	{
 		nodeArr[i].setVertexNumber(i + 1);
 		m_mainVector.push_back(&nodeArr[i]);
-	}	
+	}
 }
 
 void DirectedGraph::addEdgeToGraph(short i_currentHoldingNumber, short i_vertexToConnect)
@@ -63,14 +63,19 @@ void DirectedGraph::insertEdgeToGraph(short i_currentHoldingNumber, short i_vert
 	GraphNode* getMutualPointerForVertex = m_mainVector[i_vertexToConnect - 1];
 	m_mainVector[i_currentHoldingNumber - 1]->addVertexToSecondaryList(i_vertexToConnect, getMutualPointerForVertex);
 	m_mainVector[i_currentHoldingNumber - 1]->setNumberOfAvailableEdges();
-	
+
 }
 
 DirectedGraph::~DirectedGraph()
 {
-	for(auto v : m_mainVector)
+	vector< GraphNode* > ::iterator itr, itrEnd = m_mainVector.end();
+	for(itr = m_mainVector.begin(); itr != itrEnd; ++itr)
 	{
-		delete v;
+		delete (*itr);
 	}
+	/*for(auto v : m_mainVector)
+	{
+		delete[] v;
+	}*/
 	m_mainVector.clear();
 }

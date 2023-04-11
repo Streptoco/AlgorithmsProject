@@ -18,6 +18,13 @@ public:
 	{
 		m_vertexNumber = i_VertexNumber;
 	}
+	~GraphNode()
+	{
+		for (auto vertex : m_secondaryList)
+		{
+			delete vertex;
+		}
+	}
 	short getVertexNumber() { return m_vertexNumber; }
 	short getNumberOfAvailableEdges() { return m_numberOfEdgesAvailable; }
 	void addVertexToSecondaryList(short i_VertexToSecondary, GraphNode* getMutualPointerForVertex);

@@ -5,7 +5,7 @@ class DriverProgram
 {
 private:
 	unsigned short m_NumberOfVertexes, m_NumberOfEdges;
-	DirectedGraph* graph;
+	DirectedGraph* graph = nullptr;
 public:
 	void printMenu();
 	void handleDirectedGraph();

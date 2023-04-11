@@ -24,7 +24,7 @@ public:
 class UndirectedGraph : public DirectedGraph {
 public:
 	UndirectedGraph(int i_NumberOfVertex, int i_NumberOfEdges) : DirectedGraph(i_NumberOfVertex, i_NumberOfEdges) {}
-	~UndirectedGraph() {}
+	//~UndirectedGraph() {}
 	virtual void addEdgeToGraph(short i_firstVertex, short i_secondVertex) override
 	{
 		insertEdgeToGraph(i_firstVertex, i_secondVertex);
