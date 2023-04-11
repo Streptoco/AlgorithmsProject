@@ -7,8 +7,6 @@ void DirectedGraph::addEdgeToGraph(short i_currentHoldingNumber, short i_vertexT
 	m_mainVector[i_currentHoldingNumber - 1]->setNumberOfAvailableEdges();
 }
 
-
-
 void DirectedGraph::printGraph()
 {
 	vector<GraphNode*>::iterator listItr;
@@ -32,8 +30,12 @@ list<GraphNode*> DirectedGraph::findCircuit(GraphNode* i_startingVertex)
 		{
 			(*secondaryListItr)->visitVertex();
 			currentVertex->substractNumberOfAvailableEdges();
-			resultList.push_back((*secondaryListItr));
+			resultList.push_back((*secondaryListItr)->getMutualPointerForMainVertex());
 			currentVertex = (*secondaryListItr)->getMutualPointerForMainVertex();
+		}
+		if (i_startingVertex == currentVertex)
+		{
+			return resultList;
 		}
 	}
 	if (resultList.back()->getVertexNumber() == resultList.front()->getVertexNumber())
@@ -54,15 +56,22 @@ list<GraphNode*> DirectedGraph::euler()
 	list<GraphNode*> eulerResultList;
 	list<GraphNode*> temporaryListToPaste;
 	eulerResultList = findCircuit(m_mainVector[0]);
+	if (eulerResultList.empty())
+	{
+		return eulerResultList;
+	}
 
 	list<GraphNode*>::iterator eulerIterator = eulerResultList.begin();
 	++eulerIterator;
 
-	for (; eulerIterator != eulerResultList.end() && (*eulerIterator)->getNumberOfAvailableEdges() > 0; ++eulerIterator)
+	for (; eulerIterator != eulerResultList.end(); ++eulerIterator)
 	{
-		currentVertex = (*eulerIterator);
-		temporaryListToPaste = findCircuit(currentVertex);
-		eulerResultList.insert(eulerIterator, temporaryListToPaste.begin(), temporaryListToPaste.end());
+		if ((*eulerIterator)->getNumberOfAvailableEdges() > 0)
+		{
+			currentVertex = (*eulerIterator);
+			temporaryListToPaste = findCircuit(currentVertex);
+			eulerIterator = eulerResultList.insert(eulerIterator, temporaryListToPaste.begin(), --temporaryListToPaste.end());
+		}
 	}
 	if (eulerResultList.back()->getVertexNumber() == eulerResultList.front()->getVertexNumber())
 	{
