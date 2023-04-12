@@ -31,4 +31,23 @@ public:
 	void setMutualPointerForVertex(GraphNode* mutualPointer) { m_mutualPointerToFriend = mutualPointer; }
 	GraphNode* getMutualPointerForMainVertex() { return m_mutualPointerToFriend; }
 	list<GraphNode*>::iterator getNextAvailableVertexInList();
+	list<GraphNode*> getNeighborList() { return m_secondaryList; }
+	bool isMyNeighboorVisited(short i_numOfVertex)
+	{
+		for(auto v : m_secondaryList)
+		{
+			if(v->getVertexNumber() == i_numOfVertex)
+			{
+				if(v->getMutualPointerForMainVertex()->isVisited() == true)
+				{
+					return true;
+				}
+				else
+				{
+					return false;
+				}
+			}
+		}
+		return false;
+	}
 };

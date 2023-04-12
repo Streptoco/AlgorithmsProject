@@ -13,6 +13,7 @@ public:
 	void printGraph();
 	list<GraphNode*> findCircuit(GraphNode* i_startingVertex);
 	list<GraphNode*> euler();
+	
 
 
 	//Getter's
@@ -27,6 +28,20 @@ class UndirectedGraph : public DirectedGraph {
 public:
 	UndirectedGraph(int i_NumberOfVertex, int i_NumberOfEdges) : DirectedGraph(i_NumberOfVertex, i_NumberOfEdges) {}
 	//~UndirectedGraph() {}
+	void markTheOppositeEdge(GraphNode* i_currentVertex, GraphNode* i_visitedVertex)
+	{
+		short vertexToMarkNumber = i_currentVertex->getVertexNumber();
+		list<GraphNode*> neighborList = i_visitedVertex->getNeighborList();
+		for(auto vertex : neighborList)
+		{
+			if (vertex->getVertexNumber() == vertexToMarkNumber)
+			{
+				vertex->visitVertex();
+				vertex->getMutualPointerForMainVertex()->substractNumberOfAvailableEdges();
+				break;
+			}
+		}
+	}
 	virtual void addEdgeToGraph(short i_firstVertex, short i_secondVertex) override
 	{
 		insertEdgeToGraph(i_firstVertex, i_secondVertex);

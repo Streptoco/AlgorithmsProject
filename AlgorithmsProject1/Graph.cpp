@@ -30,6 +30,7 @@ void DirectedGraph::printGraph()
 list<GraphNode*> DirectedGraph::findCircuit(GraphNode* i_startingVertex)
 {
 	GraphNode* currentVertex = i_startingVertex;
+	currentVertex->visitVertex();
 	list<GraphNode*> resultList;
 	list<GraphNode*>::iterator secondaryListItr;
 	resultList.push_back(currentVertex);
@@ -38,16 +39,14 @@ list<GraphNode*> DirectedGraph::findCircuit(GraphNode* i_startingVertex)
 		secondaryListItr = currentVertex->getNextAvailableVertexInList();
 		if ((*secondaryListItr)->isVisited() == false)
 		{
+
 			(*secondaryListItr)->visitVertex();
 			UndirectedGraph* unDirectedGraph = dynamic_cast<UndirectedGraph*>(this);
-			if(unDirectedGraph != nullptr)
+			if (unDirectedGraph != nullptr)      
 			{
-				short getCurrentVertex = currentVertex->getVertexNumber();
-				if((*secondaryListItr)->getMutualPointerForMainVertex()->isVisited() == true)
-				{
-					continue;
-				}
+				unDirectedGraph->markTheOppositeEdge(currentVertex, (*secondaryListItr)->getMutualPointerForMainVertex());
 			}
+			
 			currentVertex->substractNumberOfAvailableEdges();
 			resultList.push_back((*secondaryListItr)->getMutualPointerForMainVertex());
 			currentVertex = (*secondaryListItr)->getMutualPointerForMainVertex();
