@@ -66,7 +66,7 @@ list<GraphNode*> DirectedGraph::findCircuit(GraphNode* i_startingVertex)
 	}
 	else
 	{
-		cout << "No circuits exist!\n";
+		//cout << "No circuits exist!\n";
 		resultList.clear();
 		return resultList;
 	}
@@ -102,6 +102,8 @@ list<GraphNode*> DirectedGraph::euler()
 	eulerResultList = findCircuit(m_mainVector[0]);
 	if (eulerResultList.empty())
 	{
+		cout << "The graph is not aulerian\n";
+		eulerResultList.clear();
 		return eulerResultList;
 	}
 
@@ -116,7 +118,7 @@ list<GraphNode*> DirectedGraph::euler()
 			temporaryListToPaste = findCircuit(currentVertex);
 			if (temporaryListToPaste.empty())
 			{
-				cout << "No euler graph exists!\n";
+				cout << "The graph is not aulerian\n";
 				eulerResultList.clear();
 				return eulerResultList;
 			}
@@ -125,12 +127,12 @@ list<GraphNode*> DirectedGraph::euler()
 	}
 	if (eulerResultList.back()->getVertexNumber() == eulerResultList.front()->getVertexNumber())
 	{
-		cout << "Euler graph exists!\n";
+		cout << "The graph is aulerian\n";
 		return eulerResultList;
 	}
 	else
 	{
-		cout << "No euler graph exists!\n";
+		cout << "The graph is not aulerian\n";
 		eulerResultList.clear();
 		return eulerResultList;
 	}
