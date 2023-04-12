@@ -37,6 +37,10 @@ list<GraphNode*> DirectedGraph::findCircuit(GraphNode* i_startingVertex)
 	while (currentVertex->getNumberOfAvailableEdges() > 0)
 	{
 		secondaryListItr = currentVertex->getNextAvailableVertexInList();
+		if(*secondaryListItr == nullptr)
+		{
+			break;
+		}
 		if ((*secondaryListItr)->isVisited() == false)
 		{
 
