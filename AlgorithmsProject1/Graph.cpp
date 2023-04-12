@@ -114,7 +114,13 @@ list<GraphNode*> DirectedGraph::euler()
 		{
 			currentVertex = (*eulerIterator);
 			temporaryListToPaste = findCircuit(currentVertex);
-			eulerIterator = eulerResultList.insert(eulerIterator, temporaryListToPaste.begin(), --temporaryListToPaste.end());
+			if (temporaryListToPaste.empty())
+			{
+				cout << "No euler graph exists!\n";
+				eulerResultList.clear();
+				return eulerResultList;
+			}
+ 			eulerIterator = eulerResultList.insert(eulerIterator, temporaryListToPaste.begin(), --temporaryListToPaste.end());
 		}
 	}
 	if (eulerResultList.back()->getVertexNumber() == eulerResultList.front()->getVertexNumber())
