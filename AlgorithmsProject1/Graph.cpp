@@ -10,6 +10,7 @@ DirectedGraph::DirectedGraph(int i_NumberOfVertex, int i_NumberOfEdges)
 		nodeArr[i].setVertexNumber(i + 1);
 		m_mainVector.push_back(&nodeArr[i]);
 	}
+	_nodesArr = nodeArr;
 }
 
 void DirectedGraph::addEdgeToGraph(short i_currentHoldingNumber, short i_vertexToConnect)
@@ -37,7 +38,7 @@ list<GraphNode*> DirectedGraph::findCircuit(GraphNode* i_startingVertex)
 	while (currentVertex->getNumberOfAvailableEdges() > 0)
 	{
 		secondaryListItr = currentVertex->getNextAvailableVertexInList();
-		if(*secondaryListItr == nullptr)
+		if (*secondaryListItr == nullptr)
 		{
 			break;
 		}
@@ -46,11 +47,11 @@ list<GraphNode*> DirectedGraph::findCircuit(GraphNode* i_startingVertex)
 
 			(*secondaryListItr)->visitVertex();
 			UndirectedGraph* unDirectedGraph = dynamic_cast<UndirectedGraph*>(this);
-			if (unDirectedGraph != nullptr)      
+			if (unDirectedGraph != nullptr)
 			{
 				unDirectedGraph->markTheOppositeEdge(currentVertex, (*secondaryListItr)->getMutualPointerForMainVertex());
 			}
-			
+
 			currentVertex->substractNumberOfAvailableEdges();
 			resultList.push_back((*secondaryListItr)->getMutualPointerForMainVertex());
 			currentVertex = (*secondaryListItr)->getMutualPointerForMainVertex();
@@ -80,19 +81,22 @@ void DirectedGraph::insertEdgeToGraph(short i_currentHoldingNumber, short i_vert
 
 }
 
-//DirectedGraph::~DirectedGraph()
-//{
-//	vector< GraphNode* > ::iterator itr, itrEnd = m_mainVector.end();
-//	for (itr = m_mainVector.begin(); itr != itrEnd; ++itr)
-//	{
-//		delete (*itr);
-//	}
-//	/*for(auto v : m_mainVector)
-//	{
-//		delete[] v;
-//	}*/
-//	m_mainVector.clear();
-//}
+DirectedGraph::~DirectedGraph()
+{
+	cout << endl << "Directed graph d'tor" << endl;
+	vector< GraphNode* > ::iterator itr, itrEnd = m_mainVector.end();
+	/*for (itr = m_mainVector.begin(); itr != itrEnd; ++itr)
+	{
+		delete (*itr);
+	}*/
+	/*for(auto v : _nodesArr)
+	{
+		delete v;
+	}*/
+
+	delete[] _nodesArr;
+	m_mainVector.clear();
+}
 
 list<GraphNode*> DirectedGraph::euler()
 {
@@ -122,7 +126,7 @@ list<GraphNode*> DirectedGraph::euler()
 				eulerResultList.clear();
 				return eulerResultList;
 			}
- 			eulerIterator = eulerResultList.insert(eulerIterator, temporaryListToPaste.begin(), --temporaryListToPaste.end());
+			eulerIterator = eulerResultList.insert(eulerIterator, temporaryListToPaste.begin(), --temporaryListToPaste.end());
 		}
 	}
 	if (eulerResultList.back()->getVertexNumber() == eulerResultList.front()->getVertexNumber())

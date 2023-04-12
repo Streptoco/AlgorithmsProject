@@ -30,3 +30,22 @@ list<GraphNode*>::iterator GraphNode::getNextAvailableVertexInList()
 		}
 	}
 }
+
+GraphNode::~GraphNode()
+{
+	
+	for(auto v : m_secondaryList)
+	{
+		cout << "In GraphNode D'tor " << v->getVertexNumber();
+		if(v->getMutualPointerForMainVertex() == nullptr)
+		{
+			cout << " from mainVector" << endl;
+		}
+		else
+		{
+			cout << endl;
+		}
+		delete v;
+	}
+
+}

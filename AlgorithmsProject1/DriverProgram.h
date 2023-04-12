@@ -4,7 +4,7 @@
 class DriverProgram
 {
 private:
-	int m_NumberOfVertexes, m_NumberOfEdges;
+	int m_NumberOfVertexes = 0, m_NumberOfEdges = 0;
 	DirectedGraph* graph = nullptr;
 public:
 	void printMenu();
@@ -14,5 +14,5 @@ public:
 	bool getInputForEdgesFromUser();
 	void printGraph();
 	void printList(list<GraphNode*> resultList);
-	//~DriverProgram() { delete[] graph; }
+	~DriverProgram() { delete graph; }
 };
