@@ -19,6 +19,7 @@ public:
 
 
 	//Getter's
+
 	short getNumberOfVertex() { return m_NumberOfVertex; }
 	short getNumberOfEdges() { return m_NumberOfEdges; }
 	short getBackValueOfMainList() { return m_mainVector.back()->getVertexNumber(); }

@@ -44,7 +44,9 @@ GraphNode::~GraphNode()
 		else
 		{
 			cout << endl;
+			//delete v->getMutualPointerForMainVertex();
 		}
+		
 		delete v;
 	}
 
