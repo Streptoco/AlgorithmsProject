@@ -82,8 +82,11 @@ void DirectedGraph::insertEdgeToGraph(short i_currentHoldingNumber, short i_vert
 
 DirectedGraph::~DirectedGraph()
 {
+#ifdef DEBUG
 	cout << endl << "Directed graph d'tor" << endl;
 	vector< GraphNode* > ::iterator itr, itrEnd = m_mainVector.end();
+#endif
+
 	/*for (itr = m_mainVector.begin(); itr != itrEnd; ++itr)
 	{
 		delete (*itr);
@@ -125,6 +128,7 @@ list<GraphNode*> DirectedGraph::euler()
 				eulerResultList.clear();
 				return eulerResultList;
 			}
+
 			eulerIterator = eulerResultList.insert(eulerIterator, temporaryListToPaste.begin(), --temporaryListToPaste.end());
 		}
 	}

@@ -5,10 +5,22 @@ void DriverProgram::printMenu()
 	char userResponse;
 	bool successfulInput;
 	cout << "Is the graph directed: y/n\n";
-	do
-	{
+	//do
+	//{
 		cin >> userResponse;
-		if (userResponse == 'y')
+		switch (userResponse)
+		{
+		case 'y':
+			successfulInput = handleDirectedGraph();
+			break;
+		case 'n':
+			successfulInput = handleUndirectedGraph();
+			break;
+		default:
+			cout << "invalid input";
+			exit(1);
+		}
+		/*if (userResponse == 'y')
 		{
 			successfulInput = handleDirectedGraph();
 		}
@@ -20,7 +32,7 @@ void DriverProgram::printMenu()
 		{
 			cout << "Please enter a valid input. '" << userResponse << "' isn't a valid input.\n";
 		}
-	} while (userResponse != 'y' && userResponse != 'n');
+	} while (userResponse != 'y' && userResponse != 'n');*/
 	if (successfulInput == true)
 	{
 		successfulInput = getInputForEdgesFromUser();

@@ -36,8 +36,9 @@ GraphNode::~GraphNode()
 	
 	for(auto v : m_secondaryList)
 	{
+#ifdef DEBUG 
 		cout << "In GraphNode D'tor " << v->getVertexNumber();
-		if(v->getMutualPointerForMainVertex() == nullptr)
+		if (v->getMutualPointerForMainVertex() == nullptr)
 		{
 			cout << " from mainVector" << endl;
 		}
@@ -46,7 +47,8 @@ GraphNode::~GraphNode()
 			cout << endl;
 			//delete v->getMutualPointerForMainVertex();
 		}
-		
+#endif
+
 		delete v;
 	}
 

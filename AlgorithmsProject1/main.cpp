@@ -6,8 +6,11 @@
 
 int main()
 {
-	// TODO: handle errors with input, check for validity of undirected graph.
-	DriverProgram program;
-	program.printMenu();
+	{
+		// TODO: handle errors with input, check for validity of undirected graph.
+		DriverProgram program;
+		program.printMenu();
+	}
+	int* arr = new int[3];
 	_CrtDumpMemoryLeaks();
 }

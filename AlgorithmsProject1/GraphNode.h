@@ -5,6 +5,7 @@ using namespace std;
 #define REF
 #define VAL
 #define FREE
+//#define DEBUG
 
 class GraphNode {
 private:
