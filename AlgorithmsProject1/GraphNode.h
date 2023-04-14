@@ -5,6 +5,7 @@ using namespace std;
 #define REF
 #define VAL
 #define FREE
+//#define DEBUG
 
 class GraphNode {
 private:
@@ -18,6 +19,7 @@ public:
 	{
 		m_vertexNumber = i_VertexNumber;
 	}
+	~GraphNode();
 	short getVertexNumber() { return m_vertexNumber; }
 	short getNumberOfAvailableEdges() { return m_numberOfEdgesAvailable; }
 	void addVertexToSecondaryList(short i_VertexToSecondary, GraphNode* getMutualPointerForVertex);
@@ -31,11 +33,6 @@ public:
 	void setMutualPointerForVertex(GraphNode* mutualPointer) { m_mutualPointerToFriend = mutualPointer; }
 	GraphNode* getMutualPointerForMainVertex() { return m_mutualPointerToFriend; }
 	list<GraphNode*>::iterator getNextAvailableVertexInList();
-};
-
-class DirectedGraphNode : public GraphNode {
-private:
-
-public:
+	list<GraphNode*> getNeighborList() { return m_secondaryList; }
 
 };

@@ -12,7 +12,7 @@ void GraphNode::printSecondaryNodes()
 	list<GraphNode*>::iterator secondaryListItr;
 	if (!m_secondaryList.empty())
 	{
-		for (secondaryListItr = m_secondaryList.begin() ; secondaryListItr != m_secondaryList.end(); ++secondaryListItr)
+		for (secondaryListItr = m_secondaryList.begin(); secondaryListItr != m_secondaryList.end(); ++secondaryListItr)
 		{
 			cout << "Current secondary vertex: " << (*secondaryListItr)->getVertexNumber() << "\n";
 		}
@@ -29,4 +29,27 @@ list<GraphNode*>::iterator GraphNode::getNextAvailableVertexInList()
 			return listItr;
 		}
 	}
+}
+
+GraphNode::~GraphNode()
+{
+	
+	for(auto v : m_secondaryList)
+	{
+#ifdef DEBUG 
+		cout << "In GraphNode D'tor " << v->getVertexNumber();
+		if (v->getMutualPointerForMainVertex() == nullptr)
+		{
+			cout << " from mainVector" << endl;
+		}
+		else
+		{
+			cout << endl;
+			//delete v->getMutualPointerForMainVertex();
+		}
+#endif
+
+		delete v;
+	}
+
 }

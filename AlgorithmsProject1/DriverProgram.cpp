@@ -3,53 +3,101 @@
 void DriverProgram::printMenu()
 {
 	char userResponse;
+	bool successfulInput;
 	cout << "Is the graph directed: y/n\n";
-	do
-	{
+	//do
+	//{
 		cin >> userResponse;
-		if (userResponse == 'y')
+		switch (userResponse)
 		{
-			handleDirectedGraph();
+		case 'y':
+			successfulInput = handleDirectedGraph();
+			break;
+		case 'n':
+			successfulInput = handleUndirectedGraph();
+			break;
+		default:
+			cout << "invalid input";
+			exit(1);
+		}
+		/*if (userResponse == 'y')
+		{
+			successfulInput = handleDirectedGraph();
 		}
 		else if (userResponse == 'n')
 		{
-			handleUndirectedGraph();
+			successfulInput = handleUndirectedGraph();
 		}
 		else
 		{
 			cout << "Please enter a valid input. '" << userResponse << "' isn't a valid input.\n";
 		}
-	} while (userResponse != 'y' && userResponse != 'n');
-	getInputForEdgesFromUser();
-	printGraph();
-	printList(graph->euler());
+	} while (userResponse != 'y' && userResponse != 'n');*/
+	if (successfulInput == true)
+	{
+		successfulInput = getInputForEdgesFromUser();
+	}
+	
+	if (successfulInput == true)
+	{
+		printList(graph->euler());
+	}
 }
 
-void DriverProgram::handleDirectedGraph()
+bool DriverProgram::handleDirectedGraph()
 {
-	unifiedHandlerForFirstCase();
-	FREE graph = new DirectedGraph(VAL m_NumberOfVertexes, VAL m_NumberOfEdges);
+	bool result = unifiedHandlerForFirstCase();
+	if (result == true)
+	{
+		FREE graph = new DirectedGraph(VAL m_NumberOfVertexes, VAL m_NumberOfEdges);
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
 
-void DriverProgram::handleUndirectedGraph()
+bool DriverProgram::handleUndirectedGraph()
 {
-	unifiedHandlerForFirstCase();
-	FREE graph = new UndirectedGraph(VAL m_NumberOfVertexes, VAL m_NumberOfEdges);
+	bool result = unifiedHandlerForFirstCase();
+	if (result == true)
+	{
+		FREE graph = new UndirectedGraph(VAL m_NumberOfVertexes, VAL m_NumberOfEdges);
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
 
-void DriverProgram::unifiedHandlerForFirstCase()
+bool DriverProgram::unifiedHandlerForFirstCase()
 {
 	cin >> m_NumberOfVertexes >> m_NumberOfEdges;
+ 	if(m_NumberOfEdges <= 0 || m_NumberOfVertexes <= 0)
+	{
+		cout << "invalid input" << endl;
+		return false;
+	}
+	return true;
+
 }
 
-void DriverProgram::getInputForEdgesFromUser()
+bool DriverProgram::getInputForEdgesFromUser()
 {
 	short currentHoldingNumber, vertexToConnect;
 	for (int i = 0; i < graph->getNumberOfEdges(); i++)
 	{
 		cin >> currentHoldingNumber >> vertexToConnect;
+		if (currentHoldingNumber > graph->getNumberOfVertex() || vertexToConnect > graph->getNumberOfVertex())
+		{
+			cout << "invalid input" << endl;
+			return false;
+		}
 		graph->addEdgeToGraph(currentHoldingNumber, vertexToConnect);
 	}
+	return true;
 }
 
 void DriverProgram::printGraph()
@@ -59,10 +107,24 @@ void DriverProgram::printGraph()
 
 void DriverProgram::printList(list<GraphNode*> resultList)
 {
-	list<GraphNode*>::iterator listItr = resultList.begin();
-	for (; listItr != resultList.end(); ++listItr)
+	if(resultList.size() == 0)
 	{
-		cout << (*listItr)->getVertexNumber() << ", ";
+		return;
 	}
-	cout << endl;
+
+	list<GraphNode*>::iterator listItr = resultList.begin();
+	cout << "(";
+	//for (; listItr != resultList.end(); ++listItr)
+	for (int i = 0; i < resultList.size(); i++, ++listItr)
+	{
+		if (i == resultList.size() - 1)
+		{
+			cout << (*listItr)->getVertexNumber();
+		}
+		else
+		{
+			cout << (*listItr)->getVertexNumber() << ",";
+		}
+	}
+	cout << ")";
 }
