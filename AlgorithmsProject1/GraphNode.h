@@ -11,9 +11,9 @@ class GraphNode {
 private:
 	short m_vertexNumber = 0;
 	short m_numberOfEdgesAvailable = 0;
-	list<GraphNode*> m_secondaryList;
-	GraphNode* m_mutualPointerToFriend = nullptr;
-	bool m_isVisited = false;
+	list<GraphNode*> m_secondaryList; // the residency list for each main vertex
+	GraphNode* m_mutualPointerToFriend = nullptr; // include, for each graph vertex, it's mutual pointer in the main vertex vector
+	bool m_isVisited = false; // to check if the edge exists
 public:
 	GraphNode(unsigned short i_VertexNumber = 0)
 	{

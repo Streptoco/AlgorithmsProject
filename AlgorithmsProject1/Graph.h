@@ -13,12 +13,12 @@ public:
 	virtual void addEdgeToGraph(short currentHoldingNumber, short vertexToConnect);
 	void insertEdgeToGraph(short i_currentHoldingNumber, short i_vertexToConnect);
 	void printGraph();
-	list<GraphNode*> findCircuit(GraphNode* i_startingVertex);
+	list<GraphNode*> findCircuit(GraphNode* i_startingVertex); 
 	list<GraphNode*> euler();
 	
 
 
-	//Getter's
+	//Getters
 
 	short getNumberOfVertex() { return m_NumberOfVertex; }
 	short getNumberOfEdges() { return m_NumberOfEdges; }

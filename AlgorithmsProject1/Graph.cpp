@@ -4,18 +4,18 @@ DirectedGraph::DirectedGraph(int i_NumberOfVertex, int i_NumberOfEdges)
 {
 	m_NumberOfVertex = i_NumberOfVertex;
 	m_NumberOfEdges = i_NumberOfEdges;
-	FREE GraphNode* nodeArr = new GraphNode[m_NumberOfVertex];
+	FREE GraphNode* nodeArr = new GraphNode[m_NumberOfVertex]; // in order to have control over the allocated nodes, we save them in a dynamic array, later to be deleted
 	for (int i = 0; i < i_NumberOfVertex; i++)
 	{
 		nodeArr[i].setVertexNumber(i + 1);
-		m_mainVector.push_back(&nodeArr[i]);
+		m_mainVector.push_back(&nodeArr[i]); // the nodes are then added to the main vertex list, each to have a residency list
 	}
 	_nodesArr = nodeArr;
 }
 
 void DirectedGraph::addEdgeToGraph(short i_currentHoldingNumber, short i_vertexToConnect)
 {
-	insertEdgeToGraph(i_currentHoldingNumber, i_vertexToConnect);
+	insertEdgeToGraph(i_currentHoldingNumber, i_vertexToConnect); // call the method to insert the edge into the graph
 }
 
 void DirectedGraph::printGraph()
@@ -34,8 +34,8 @@ list<GraphNode*> DirectedGraph::findCircuit(GraphNode* i_startingVertex)
 	currentVertex->visitVertex();
 	list<GraphNode*> resultList;
 	list<GraphNode*>::iterator secondaryListItr;
-	resultList.push_back(currentVertex);
-	while (currentVertex->getNumberOfAvailableEdges() > 0)
+	resultList.push_back(currentVertex); // start with the first vertex passed to the method
+	while (currentVertex->getNumberOfAvailableEdges() > 0) // condition: while the current vertex still has "unused" edges
 	{
 		secondaryListItr = currentVertex->getNextAvailableVertexInList();
 		if (*secondaryListItr == nullptr)
@@ -45,14 +45,14 @@ list<GraphNode*> DirectedGraph::findCircuit(GraphNode* i_startingVertex)
 		if ((*secondaryListItr)->isVisited() == false)
 		{
 
-			(*secondaryListItr)->visitVertex();
-			UndirectedGraph* unDirectedGraph = dynamic_cast<UndirectedGraph*>(this);
+			(*secondaryListItr)->visitVertex(); // mark vertex as visited
+			UndirectedGraph* unDirectedGraph = dynamic_cast<UndirectedGraph*>(this); // check during run-time if the graph is un-directed
 			if (unDirectedGraph != nullptr)
 			{
-				unDirectedGraph->markTheOppositeEdge(currentVertex, (*secondaryListItr)->getMutualPointerForMainVertex());
+				unDirectedGraph->markTheOppositeEdge(currentVertex, (*secondaryListItr)->getMutualPointerForMainVertex()); // if so, mark both ends
 			}
 
-			currentVertex->substractNumberOfAvailableEdges();
+			currentVertex->substractNumberOfAvailableEdges(); // substract by 1 the number of available edges
 			resultList.push_back((*secondaryListItr)->getMutualPointerForMainVertex());
 			currentVertex = (*secondaryListItr)->getMutualPointerForMainVertex();
 		}
@@ -61,22 +61,22 @@ list<GraphNode*> DirectedGraph::findCircuit(GraphNode* i_startingVertex)
 			return resultList;
 		}
 	}
-	if (resultList.back()->getVertexNumber() == resultList.front()->getVertexNumber())
+	if (resultList.back()->getVertexNumber() == resultList.front()->getVertexNumber()) // if we're in a circle
 	{
 		return resultList;
 	}
 	else
 	{
-		resultList.clear();
+		resultList.clear(); // delete the list to return an empty one
 		return resultList;
 	}
 }
 
 void DirectedGraph::insertEdgeToGraph(short i_currentHoldingNumber, short i_vertexToConnect)
 {
-	GraphNode* getMutualPointerForVertex = m_mainVector[i_vertexToConnect - 1];
-	m_mainVector[i_currentHoldingNumber - 1]->addVertexToSecondaryList(i_vertexToConnect, getMutualPointerForVertex);
-	m_mainVector[i_currentHoldingNumber - 1]->setNumberOfAvailableEdges();
+	GraphNode* getMutualPointerForVertex = m_mainVector[i_vertexToConnect - 1]; // create a vertex for the main vertex vector
+	m_mainVector[i_currentHoldingNumber - 1]->addVertexToSecondaryList(i_vertexToConnect, getMutualPointerForVertex); // add the second parameter to the first one's residency list
+	m_mainVector[i_currentHoldingNumber - 1]->setNumberOfAvailableEdges(); // increment by 1 the number of available edges
 
 }
 
@@ -86,16 +86,6 @@ DirectedGraph::~DirectedGraph()
 	cout << endl << "Directed graph d'tor" << endl;
 	vector< GraphNode* > ::iterator itr, itrEnd = m_mainVector.end();
 #endif
-
-	/*for (itr = m_mainVector.begin(); itr != itrEnd; ++itr)
-	{
-		delete (*itr);
-	}*/
-	/*for(auto v : _nodesArr)
-	{
-		delete v;
-	}*/
-
 	delete[] _nodesArr;
 	m_mainVector.clear();
 }
@@ -106,7 +96,7 @@ list<GraphNode*> DirectedGraph::euler()
 	list<GraphNode*> eulerResultList;
 	list<GraphNode*> temporaryListToPaste;
 	eulerResultList = findCircuit(m_mainVector[0]);
-	if (eulerResultList.empty())
+	if (eulerResultList.empty()) // this case happens when we haven't found a circle in the passed vertex
 	{
 		cout << "The graph is not aulerian\n";
 		eulerResultList.clear();
@@ -114,14 +104,14 @@ list<GraphNode*> DirectedGraph::euler()
 	}
 
 	list<GraphNode*>::iterator eulerIterator = eulerResultList.begin();
-	++eulerIterator;
+	++eulerIterator; // advance, so we could get the next vertex in the list
 
 	for (; eulerIterator != eulerResultList.end(); ++eulerIterator)
 	{
 		if ((*eulerIterator)->getNumberOfAvailableEdges() > 0)
 		{
 			currentVertex = (*eulerIterator);
-			temporaryListToPaste = findCircuit(currentVertex);
+			temporaryListToPaste = findCircuit(currentVertex); // find the circle from the next vertex
 			if (temporaryListToPaste.empty())
 			{
 				cout << "The graph is not aulerian\n";
@@ -129,10 +119,10 @@ list<GraphNode*> DirectedGraph::euler()
 				return eulerResultList;
 			}
 
-			eulerIterator = eulerResultList.insert(eulerIterator, temporaryListToPaste.begin(), --temporaryListToPaste.end());
+			eulerIterator = eulerResultList.insert(eulerIterator, temporaryListToPaste.begin(), --temporaryListToPaste.end()); // paste the temporary list into the main one
 		}
 	}
-	if (eulerResultList.back()->getVertexNumber() == eulerResultList.front()->getVertexNumber())
+	if (eulerResultList.back()->getVertexNumber() == eulerResultList.front()->getVertexNumber()) // if the outcome of the list is a circle
 	{
 		cout << "The graph is aulerian\n";
 		return eulerResultList;

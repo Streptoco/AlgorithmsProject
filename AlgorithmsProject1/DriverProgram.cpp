@@ -3,44 +3,29 @@
 void DriverProgram::printMenu()
 {
 	char userResponse;
-	bool successfulInput;
+	bool successfulInput; // double-check that the input is indeed valid
 	cout << "Is the graph directed: y/n\n";
-	//do
-	//{
-		cin >> userResponse;
-		switch (userResponse)
-		{
-		case 'y':
-			successfulInput = handleDirectedGraph();
-			break;
-		case 'n':
-			successfulInput = handleUndirectedGraph();
-			break;
-		default:
-			cout << "invalid input";
-			exit(1);
-		}
-		/*if (userResponse == 'y')
-		{
-			successfulInput = handleDirectedGraph();
-		}
-		else if (userResponse == 'n')
-		{
-			successfulInput = handleUndirectedGraph();
-		}
-		else
-		{
-			cout << "Please enter a valid input. '" << userResponse << "' isn't a valid input.\n";
-		}
-	} while (userResponse != 'y' && userResponse != 'n');*/
+	cin >> userResponse;
+	switch (userResponse)
+	{
+	case 'y':
+		successfulInput = handleDirectedGraph();
+		break;
+	case 'n':
+		successfulInput = handleUndirectedGraph();
+		break;
+	default:
+		cout << "invalid input";
+		exit(1);
+	}
 	if (successfulInput == true)
 	{
-		successfulInput = getInputForEdgesFromUser();
+		successfulInput = getInputForEdgesFromUser(); // gets the stream of {vertex A, vertex B} input from the user
 	}
 	
 	if (successfulInput == true)
 	{
-		printList(graph->euler());
+		printList(graph->euler()); // prints the euler circuit, if it exists
 	}
 }
 
@@ -49,7 +34,7 @@ bool DriverProgram::handleDirectedGraph()
 	bool result = unifiedHandlerForFirstCase();
 	if (result == true)
 	{
-		FREE graph = new DirectedGraph(VAL m_NumberOfVertexes, VAL m_NumberOfEdges);
+		FREE graph = new DirectedGraph(VAL m_NumberOfVertexes, VAL m_NumberOfEdges); // the 'FREE' prefix exists to let us know the object is dynamically allocated
 		return true;
 	}
 	else
@@ -86,7 +71,7 @@ bool DriverProgram::unifiedHandlerForFirstCase()
 
 bool DriverProgram::getInputForEdgesFromUser()
 {
-	short currentHoldingNumber, vertexToConnect;
+	short currentHoldingNumber, vertexToConnect; // currentHoldingNumber corresponds to the main vertex, the latter to the vertex in the residency list
 	for (int i = 0; i < graph->getNumberOfEdges(); i++)
 	{
 		cin >> currentHoldingNumber >> vertexToConnect;
@@ -114,7 +99,6 @@ void DriverProgram::printList(list<GraphNode*> resultList)
 
 	list<GraphNode*>::iterator listItr = resultList.begin();
 	cout << "(";
-	//for (; listItr != resultList.end(); ++listItr)
 	for (int i = 0; i < resultList.size(); i++, ++listItr)
 	{
 		if (i == resultList.size() - 1)
