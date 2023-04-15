@@ -5,39 +5,24 @@ void DriverProgram::printMenu()
 	char userResponse;
 	bool successfulInput;
 	cout << "Is the graph directed: y/n\n";
-	//do
-	//{
-		cin >> userResponse;
-		switch (userResponse)
-		{
-		case 'y':
-			successfulInput = handleDirectedGraph();
-			break;
-		case 'n':
-			successfulInput = handleUndirectedGraph();
-			break;
-		default:
-			cout << "invalid input";
-			exit(1);
-		}
-		/*if (userResponse == 'y')
-		{
-			successfulInput = handleDirectedGraph();
-		}
-		else if (userResponse == 'n')
-		{
-			successfulInput = handleUndirectedGraph();
-		}
-		else
-		{
-			cout << "Please enter a valid input. '" << userResponse << "' isn't a valid input.\n";
-		}
-	} while (userResponse != 'y' && userResponse != 'n');*/
+	cin >> userResponse;
+	switch (userResponse)
+	{
+	case 'y':
+		successfulInput = handleDirectedGraph();
+		break;
+	case 'n':
+		successfulInput = handleUndirectedGraph();
+		break;
+	default:
+		cout << "invalid input";
+		exit(1);
+	}
 	if (successfulInput == true)
 	{
 		successfulInput = getInputForEdgesFromUser();
 	}
-	
+
 	if (successfulInput == true)
 	{
 		printList(graph->euler());
@@ -75,7 +60,7 @@ bool DriverProgram::handleUndirectedGraph()
 bool DriverProgram::unifiedHandlerForFirstCase()
 {
 	cin >> m_NumberOfVertexes >> m_NumberOfEdges;
- 	if(m_NumberOfEdges <= 0 || m_NumberOfVertexes <= 0)
+	if (m_NumberOfEdges <= 0 || m_NumberOfVertexes <= 0)
 	{
 		cout << "invalid input" << endl;
 		return false;
@@ -107,14 +92,13 @@ void DriverProgram::printGraph()
 
 void DriverProgram::printList(list<GraphNode*> resultList)
 {
-	if(resultList.size() == 0)
+	if (resultList.empty() == true)
 	{
 		return;
 	}
 
 	list<GraphNode*>::iterator listItr = resultList.begin();
 	cout << "(";
-	//for (; listItr != resultList.end(); ++listItr)
 	for (int i = 0; i < resultList.size(); i++, ++listItr)
 	{
 		if (i == resultList.size() - 1)

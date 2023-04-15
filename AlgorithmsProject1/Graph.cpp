@@ -87,15 +87,6 @@ DirectedGraph::~DirectedGraph()
 	vector< GraphNode* > ::iterator itr, itrEnd = m_mainVector.end();
 #endif
 
-	/*for (itr = m_mainVector.begin(); itr != itrEnd; ++itr)
-	{
-		delete (*itr);
-	}*/
-	/*for(auto v : _nodesArr)
-	{
-		delete v;
-	}*/
-
 	delete[] _nodesArr;
 	m_mainVector.clear();
 }
