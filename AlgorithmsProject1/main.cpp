@@ -1,16 +1,6 @@
 ﻿#include "DriverProgram.h"
-#define  CRT_SECURE_NO_WARNINGS
-#define _CRTDBG_MAP_ALLOC
-#include <stdlib.h>
-#include <crtdbg.h>
-
 int main()
 {
-	{
-		// TODO: handle errors with input, check for validity of undirected graph.
-		DriverProgram program;
-		program.printMenu();
-	}
-	int* arr = new int[3];
-	_CrtDumpMemoryLeaks();
+	DriverProgram program;
+	program.printMenu();
 }
