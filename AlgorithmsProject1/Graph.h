@@ -41,7 +41,6 @@ public:
 			if (vertex->getVertexNumber() == vertexToMarkNumber)
 			{
 				vertex->visitVertex();
-				//vertex->getMutualPointerForMainVertex()->substractNumberOfAvailableEdges();
 				i_visitedVertex->substractNumberOfAvailableEdges();
 				break;
 			}

@@ -22,7 +22,7 @@ void DriverProgram::printMenu()
 	{
 		successfulInput = getInputForEdgesFromUser(); // gets the stream of {vertex A, vertex B} input from the user
 	}
-	
+
 	if (successfulInput == true)
 	{
 		printList(graph->euler()); // prints the euler circuit, if it exists
@@ -60,7 +60,7 @@ bool DriverProgram::handleUndirectedGraph()
 bool DriverProgram::unifiedHandlerForFirstCase()
 {
 	cin >> m_NumberOfVertexes >> m_NumberOfEdges;
- 	if(m_NumberOfEdges <= 0 || m_NumberOfVertexes <= 0)
+	if (m_NumberOfEdges <= 0 || m_NumberOfVertexes <= 0)
 	{
 		cout << "invalid input" << endl;
 		return false;
@@ -92,7 +92,7 @@ void DriverProgram::printGraph()
 
 void DriverProgram::printList(list<GraphNode*> resultList)
 {
-	if(resultList.size() == 0)
+	if (resultList.empty() == true)
 	{
 		return;
 	}
