@@ -3,7 +3,7 @@
 void DriverProgram::printMenu()
 {
 	char userResponse;
-	bool successfulInput;
+	bool successfulInput; // double-check that the input is indeed valid
 	cout << "Is the graph directed: y/n\n";
 	cin >> userResponse;
 	switch (userResponse)
@@ -20,12 +20,12 @@ void DriverProgram::printMenu()
 	}
 	if (successfulInput == true)
 	{
-		successfulInput = getInputForEdgesFromUser();
+		successfulInput = getInputForEdgesFromUser(); // gets the stream of {vertex A, vertex B} input from the user
 	}
 
 	if (successfulInput == true)
 	{
-		printList(graph->euler());
+		printList(graph->euler()); // prints the euler circuit, if it exists
 	}
 }
 
@@ -34,7 +34,7 @@ bool DriverProgram::handleDirectedGraph()
 	bool result = unifiedHandlerForFirstCase();
 	if (result == true)
 	{
-		FREE graph = new DirectedGraph(VAL m_NumberOfVertexes, VAL m_NumberOfEdges);
+		FREE graph = new DirectedGraph(VAL m_NumberOfVertexes, VAL m_NumberOfEdges); // the 'FREE' prefix exists to let us know the object is dynamically allocated
 		return true;
 	}
 	else
@@ -71,7 +71,7 @@ bool DriverProgram::unifiedHandlerForFirstCase()
 
 bool DriverProgram::getInputForEdgesFromUser()
 {
-	short currentHoldingNumber, vertexToConnect;
+	short currentHoldingNumber, vertexToConnect; // currentHoldingNumber corresponds to the main vertex, the latter to the vertex in the residency list
 	for (int i = 0; i < graph->getNumberOfEdges(); i++)
 	{
 		cin >> currentHoldingNumber >> vertexToConnect;

@@ -3,7 +3,7 @@
 void GraphNode::addVertexToSecondaryList(short i_VertexToSecondary, GraphNode* getMutualPointerForVertex)
 {
 	FREE GraphNode* secondaryNodeToPush = new GraphNode(i_VertexToSecondary);
-	secondaryNodeToPush->setMutualPointerForVertex(getMutualPointerForVertex);
+	secondaryNodeToPush->setMutualPointerForVertex(getMutualPointerForVertex); // after its inception, we add the newly created vertex to the residency list
 	m_secondaryList.push_back(secondaryNodeToPush);
 }
 
@@ -45,7 +45,7 @@ GraphNode::~GraphNode()
 		else
 		{
 			cout << endl;
-			//delete v->getMutualPointerForMainVertex();
+			
 		}
 #endif
 
